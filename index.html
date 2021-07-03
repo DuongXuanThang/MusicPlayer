@@ -81,6 +81,9 @@
 
         const cd = $('.cd')
         const cdwidth = cd.offsetWidth; //lay chieu rong mac dinh cua cd
+
+        const nextBtn = $('.btn-next');
+        const preBtn = $('.btn-prev');
         const app = {
             currentIndex: 0, // lay ra bai hat dau tien cua mảng
             isPlaying : false, //pause
@@ -164,10 +167,18 @@
             },
             loadCurrentSong: function () {
 
-                console.log(heading, cdThumd, audio)
+                
                 heading.textContent = this.currentSong.name
                 cdThumd.style.backgroundImage = `url('${this.currentSong.image}')`
                 audio.src = this.currentSong.path
+
+            },
+            nextSong: function () {
+                this.currentIndex++;
+                if(this.currentIndex >= this.songs.length){
+                    this.currentSong = 0
+                }
+                this.loadCurrentSong();
 
             },
             handleEvent: function () {
@@ -179,7 +190,7 @@
                     duration : 10000, // 10second
                     interations: Infinity
                 })
-                //cdAnimate.pause()
+                cdAnimate.pause()
 
 
                 //xu li kich thuoc to nho khi scroll
@@ -221,6 +232,11 @@
                  const seekTime = audio.duration / 100 * e.target.value ;
                  audio.currentTime = seekTime;
 
+                }
+                // xu li khi next song
+                nextBtn.onclick = function(){
+                    _this.nextSong();
+                    audio.play();
                 }
             },
             start: function () {
