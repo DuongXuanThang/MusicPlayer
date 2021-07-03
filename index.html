@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
             integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
             crossorigin="anonymous" />
+            <link rel="shortcut icon" href="#">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link rel="stylesheet" href="asset/stylesheeet.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -175,7 +176,7 @@
                     duration : 10000, // 10second
                     interations: Infinity
                 })
-                cdAnimate.pause()
+                //cdAnimate.pause()
 
 
                 //xu li kich thuoc to nho khi scroll
@@ -195,10 +196,12 @@
                     _this.isPlaying = false
                     audio.pause();
                     player.classList.remove('playing');
+                    cdAnimate.pause();
                     }else{
                     _this.isPlaying = true
                     audio.play();   
                     player.classList.add('playing');
+                    cdAnimate.play();
                     }
 
                     audio.ontimeupdate = function(){
