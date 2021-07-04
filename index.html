@@ -103,43 +103,43 @@
 
                 },
                 {
-                    name: 'song1',
+                    name: 'Hẹn Yêu',
                     singer: 'hoangdung',
                     path: './asset/music/song1.mp3',
                     image: './asset/img/song1.jpg'
 
                 },
                 {
-                    name: 'song2',
-                    singer: 'hoangdung',
+                    name: 'Lỡ Say Bye là Bye',
+                    singer: 'Lemese-Changg',
                     path: './asset/music/song2.mp3',
                     image: './asset/img/song2.jpg'
 
                 },
                 {
-                    name: 'song3',
-                    singer: 'hoangdung',
+                    name: 'Sài Gòn đau lòng quá',
+                    singer: 'Hoàng Duyên',
                     path: './asset/music/song3.mp3',
                     image: './asset/img/song3.jpg'
 
                 },
                 {
-                    name: 'song4',
-                    singer: 'hoangdung',
+                    name: 'Nàng Thơ',
+                    singer: 'Hoàng Dũng',
                     path: './asset/music/song4.mp3',
                     image: './asset/img/song4.jpg'
 
                 },
                 {
-                    name: 'song4',
-                    singer: 'hoangdung',
+                    name: 'Nàng Thơ',
+                    singer: 'Hoàng Dũng',
                     path: './asset/music/song4.mp3',
                     image: './asset/img/song4.jpg'
 
                 },
                 {
-                    name: 'song4',
-                    singer: 'hoangdung',
+                    name: 'Nàng Thơ',
+                    singer: 'Hoàng Dũng',
                     path: './asset/music/song4.mp3',
                     image: './asset/img/song4.jpg'
 
@@ -219,8 +219,8 @@
                 const cdAnimate = cdThumd.animate([
                     {transform: 'rotate(360deg)'}
                 ],{
-                    duration : 10000, // 10second
-                    interations: Infinity
+                    duration :15000, // 10second
+                    interations: Infinity,
                 })
                 cdAnimate.pause()
 
@@ -328,6 +328,12 @@
                               _this.loadCurrentSong();
                               audio.play();
                               _this.render();
+                              audio.onplay = function () {
+                        _this.isPlaying = true
+                        player.classList.add('playing');
+                        cdAnimate.play();
+                          
+                    } 
                             }
 
                     }
