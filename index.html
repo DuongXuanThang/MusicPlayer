@@ -84,9 +84,14 @@
 
         const nextBtn = $('.btn-next');
         const preBtn = $('.btn-prev');
+        const randomBtn = $('.btn-random');
+        const repeatBtn = $('.btn-repeat');
+        
         const app = {
             currentIndex: 0, // lay ra bai hat dau tien cua mảng
             isPlaying : false, //pause
+            isRandom:false,
+            isRepeat: false,
             songs: [
                 {
                     name: 'song4',
@@ -176,16 +181,33 @@
             nextSong: function () {
                 this.currentIndex++;
                 if(this.currentIndex >= this.songs.length){
-                    this.currentSong = 0
+                    this.currentIndex = 0
                 }
                 this.loadCurrentSong();
 
+            },
+            prevSong: function () {
+                this.currentIndex--;
+                if(this.currentIndex < 0){
+                    this.currentIndex = this.songs.length - 1;
+                }
+                this.loadCurrentSong();
+
+            },
+            playRandom: function () {
+                let newIndex
+                do{
+                   newIndex =  Math.floor(Math.random() * this.songs.length)
+                }while(newIndex === this.currentIndex)
+                console.log(newIndex)
+                this.currentIndex = newIndex
+                this.loadCurrentSong()
             },
             handleEvent: function () {
                 const _this = this
                 //xu li cd quay
                 const cdAnimate = cdThumd.animate([
-                    {transform: 'rotate(360deg'}
+                    {transform: 'rotate(360deg)'}
                 ],{
                     duration : 10000, // 10second
                     interations: Infinity
@@ -235,9 +257,46 @@
                 }
                 // xu li khi next song
                 nextBtn.onclick = function(){
-                    _this.nextSong();
+                    if (_this.isRandom) {
+                        _this.playRandom();
+                       
+                    } else {
+                        _this.nextSong();
+                    }
+                   
                     audio.play();
                 }
+                preBtn.onclick = function(){
+                    if (_this.isRandom) {
+                        _this.playRandom();
+                    } else {
+                        _this.prevSong();
+                    }
+                    audio.play();
+                }
+                //xu li bat tat random
+                randomBtn.onclick = function(){
+                    
+                    _this.isRandom = !_this.isRandom
+                    randomBtn.classList.toggle('active',_this.isRandom);
+                }
+                //xu li phat lai
+                repeatBtn.onclick = function(){
+                    _this.isRepeat = !_this.isRepeat
+                    repeatBtn.classList.toggle('active',_this.isRepeat);
+                } 
+
+                // xu li audio ket thuc 1 bai handleEvent
+                audio.onended= function () {
+                    if(_this.isRepeat){
+                        audio.play();
+                    }else{
+                        nextBtn.click();
+                    }
+                  
+                }
+
+                
             },
             start: function () {
                 this.handleEvent();
