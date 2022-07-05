@@ -18,10 +18,10 @@ const app = {
     isPlaying : false, //pause
     songs: [
         {
-            name: 'song4',
-            singer: 'hoangdung',
-            path: './asset/music/song4.mp3',
-            image: './asset/img/song4.jpg'
+            name: 'I Love You But..',
+            singer: 'Eenie Meenie',
+            path: './asset/music/i_love_you_but_eenie_meenie_cover_by_ray_lyrics_402028993587679162.mp3',
+            image: './asset/img/Iloveyoubut.jpg'
 
         },
         {
